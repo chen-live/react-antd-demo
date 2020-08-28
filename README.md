@@ -90,6 +90,45 @@
   production env:
 
 ### react-router
-
+# https://reacttraining.com/blog/react-router-v6-pre/#nested-routes-and-layouts
 # 安装
 1. npm install react-router-dom --save
+2. SPA单页面应用
+# BrowserRouter && HashRouter
+1. HashRouter 锚点链接
+2. BrowserRouter h5新特性，上线之后需要后台做重定向处理
+3. 路由
+  引用：
+  import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+  <Router> ->所有的路由都应包含在此标签中
+    <Switch> ->表示同一时间只显示一个页面
+      <Route path="/home" component={Home} /> ->(path：路径，component：引入的js或jsx)
+      <Route strict exact path="/mine" component={Mine} /> ->(exact：精准匹配，strict：更为严格的匹配)
+      <Route strict exact path="/mine/ucenter/:id?/:name" component={UCenter} /> -> (传参，组件用props.match.params.id接收，问号代表可以不传)
+    </Switch>
+  </Router>
+
+  跳转：
+  import { Link, NavLink } from "react-router-dom"
+  <Link to="/mine" >Mine page</Link>
+  <NavLink exact to="/home" activeClass="myClass" activeStyle={{ color: "green", fontSize: "50px" }}>Home page</NavLink>
+  props.history.push(your router) 添加
+  props.history.replace(your router) 替换
+  1. 当组件没有被定义在<Router>标签中时this.props是一个空对象，无法使用this.props.push/replace去进行页面跳转，时就要用withRouter高阶组件进行路由注册
+    import { withRouter } from "react-router-dom"
+    export default withRouter(your class component or function component)
+  2. 条件判断段是否进行路由跳转 prompt
+    import { Prompt } from "react-router-dom"
+    <Prompt when={your boolean} message={your message}>
+  重定向：
+  <Redirect form="/hello" to="/mine"></Redurect> -> 访问hello 自动跳转 mine 
+
+  ### redux
+  react-redux 入门教程 阮一峰
+  一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护
+  react 状态管理，类似于vue的vuex，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性
+
+
+  
+  
+
