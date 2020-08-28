@@ -1,0 +1,1 @@
+export const basicurl = "http://iwenwiki.com"
