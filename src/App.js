@@ -15,7 +15,8 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      banners: []
+      banners: [],
+      hasError: false
     }
   }
   componentDidMount() {
@@ -35,6 +36,12 @@ class App extends React.Component {
     this.setState({
       banners: b.banner
     })
+  }
+  static getDerivedStateFromError(error) {
+    console.log(1, error);
+    return {
+      hasError: true
+    }
   }
   render() {
     // let { banners } = this.state
@@ -59,7 +66,7 @@ class App extends React.Component {
           </Switch>
         </Router> */}
         {/* <Parent /> */}
-        <ParentContext />
+        {this.state.hasError ? "出错啦~" : <ParentContext />}
       </div>
     )
   }

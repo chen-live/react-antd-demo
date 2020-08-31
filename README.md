@@ -133,22 +133,26 @@
 ### Context
 # 为一个组件树设置一个全局的数据
 perent:
+// 创建一个Context上下文对象
 export default const {Provider,Consumer} = React.createContext("defaultValue");
 子组件引入Consumer并且在Consumer标签内使用函数导出所需要的数据即可
 child:
-import {Consumer} from "./Parent"
+import {Consumer} from "./Parent"// 引入父级创建的上下文对象，可以直接引用
 render(){
+  // const theme=this.context //theme 直接访问到上下文对象的值
   return {
     <Consumer>
       {(value)=><div>{value}</div>} 
     </Consumer>
   }
 }
-grandeSon: . . . 同child
+child.ContextType=Consumer // 给class绑定上下文对象
+# Context 可以传递任意类型的值
+1. 传递函数
+ 见src/view/Context
 
-
-
-
+### 错误边界
+代码中部分js的错误可能会导致整个页面崩溃，为了避免解决这个问题，react引入了新的概念“错误边界”,能够在捕捉到错误是渲染备用UI，而不是整个页面崩溃
   
   
 
