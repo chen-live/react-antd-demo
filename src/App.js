@@ -7,7 +7,9 @@ import Basic from "./apis/apis"
 // import UCenter from "./view/UCenter"
 // import NotFound from "./view/NotFound"
 // import Demo from "./view/Demo"
-import Parent from "./components/store/Parent"
+import ParentContext from "./view/Context/Parent"
+// import Parent from "./components/store/Parent"
+// import { createStore } from "redux"
 
 class App extends React.Component {
   constructor() {
@@ -29,6 +31,7 @@ class App extends React.Component {
     }
     let b = await Basic.bannerHandler();
     console.log(w)
+    console.log(f)
     this.setState({
       banners: b.banner
     })
@@ -55,7 +58,8 @@ class App extends React.Component {
             <Route component={NotFound} />
           </Switch>
         </Router> */}
-        <Parent/>
+        {/* <Parent /> */}
+        <ParentContext />
       </div>
     )
   }

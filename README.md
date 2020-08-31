@@ -1,5 +1,5 @@
 ### 使用react-create-app创建react项目
-
+# npm install npx -g
 # 1.npx create-react-app my-app
 # 2.cd my-app
 # 3.yarn start
@@ -23,7 +23,7 @@
   const proxy = require('http-proxy-middleware')
   error:proxy is not a function 
   配置如下：
-    const {createProxyMiddleware } = require('http-proxy-middleware');
+    const { createProxyMiddleware } = require('http-proxy-middleware');
     module.exports = function (app) {
       app.use(
         createProxyMiddleware(
@@ -127,8 +127,44 @@
   react-redux 入门教程 阮一峰
   一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护
   react 状态管理，类似于vue的vuex，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性
+  1. 安装
+   npm install redux --save
+   
+### Context
+# 为一个组件树设置一个全局的数据
+perent:
+export default const {Provider,Consumer} = React.createContext("defaultValue");
+子组件引入Consumer并且在Consumer标签内使用函数导出所需要的数据即可
+child:
+import {Consumer} from "./Parent"
+render(){
+  return {
+    <Consumer>
+      {(value)=><div>{value}</div>} 
+    </Consumer>
+  }
+}
+grandeSon: . . . 同child
+
+
 
 
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
