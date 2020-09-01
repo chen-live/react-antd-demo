@@ -126,7 +126,7 @@
   重定向：
   <Redirect form="/hello" to="/mine"></Redurect> -> 访问hello 自动跳转 mine 
 
-  ### redux
+### redux
   react-redux 入门教程 阮一峰
   一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护
   react 状态管理，类似于vue的vuex，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性
@@ -200,54 +200,146 @@
      store.dispatch is not a function
      应引入index.js 而不是reducer.js
 
-   
-   
+### react-redux
+  1. 安装
+    npm install --save-dev react-redux
+  2. 使用
+    使用redux创建一个store库
+    import {Provider} from "react-redux"
+    import store from "MyStore"
+    export default class ReactReduxDemo extends React.Component{
+      render(){
+        return (
+          <Provider store={store}>
+            <MyConponent/>
+          </Provider>
+        )
+      }
+    }
+    -------------------
+    actions.js:
+    export function increment() {
+      return {
+        type: "INCREMENT"
+      }
+    }
+    export function decrement() {
+      return {
+        type: "DECREMENT"
+      }
+    }
+    -------------------
+    MyConponent:
+    import {connect} from "react-redux"
+    import {increment,decrement} from "actions"
+    export default class MyComponent extends React.Component{
+      render(){
+        const { increment, decrement } = this.props;
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>{this.props.counter}</h2>
+            <div style={{ textAlign: "center" }}>
+              <button onClick={() => { increment() }}>increase</button>
+              <button onClick={() => { decrement() }}>decrease</button>
+            </div>
+          </div>
+        )
+      }
+    }
+    const mapStateToProps = (state) => {
+      return {
+        counter: state
+      }
+    }
+    const mapDispatchToProps = (dispatch) => {
+      return {
+        increment: () => {
+          dispatch(increment())
+        },
+        decrement: () => {
+          dispatch(decrement())
+        }
+      }
+    }
+    export default connect(mapStateToProps, mapDispatchToProps)(ReduxDemo) 
+  3. 参数传递
+    <button onClick={() => { increment(5) }}>increase</button>
+    <button onClick={() => { decrement(10) }}>decrease</button>
+    actions.js:
+    import * as consts from "../constans/index"
+    export function increment(num) {
+      return {
+        type: consts.INCREMENT,
+        num
+      }
+    }
+    export function decrement(num) {
+      return {
+        type: consts.DECREMENT,
+        num
+      }
+    }
+    reducer.js
+    import * as consts from "./constans/index"
+    const reducer = (state = 0, action) => {
+      switch (action.type) {
+        case consts.INCREMENT:
+          return state + action.num;
+        case consts.DECREMENT:
+          return state - action.num;
+        default:
+          return state
+      }
+    }
+    export default reducer
+  
+  
 ### Context
-# 为一个组件树设置一个全局的数据
-perent:
-// 创建一个Context上下文对象
-export default const {Provider,Consumer} = React.createContext("defaultValue");
-子组件引入Consumer并且在Consumer标签内使用函数导出所需要的数据即可
-child:
-import {Consumer} from "./Parent"// 引入父级创建的上下文对象，可以直接引用
-render(){
-  // const theme=this.context //theme 直接访问到上下文对象的值
-  return {
-    <Consumer>
-      {(value)=><div>{value}</div>} 
-    </Consumer>
+  # 为一个组件树设置一个全局的数据
+  perent:
+  // 创建一个Context上下文对象
+  export default const {Provider,Consumer} = React.createContext("defaultValue");
+  子组件引入Consumer并且在Consumer标签内使用函数导出所需要的数据即可
+  child:
+  import {Consumer} from "./Parent"// 引入父级创建的上下文对象，可以直接引用
+  render(){
+    // const theme=this.context //theme 直接访问到上下文对象的值
+    return {
+      <Consumer>
+        {(value)=><div>{value}</div>} 
+      </Consumer>
+    }
   }
-}
-child.ContextType=Consumer // 给class绑定上下文对象
-# Context 可以传递任意类型的值
-1. 传递函数
- 见src/view/Context
+  child.ContextType=Consumer // 给class绑定上下文对象
+  # Context 可以传递任意类型的值
+  1. 传递函数
+  见src/view/Context
 
 ### 错误边界
-代码中部分js的错误可能会导致整个页面崩溃，为了避免解决这个问题，react引入了新的概念“错误边界”,能够在捕捉到错误是渲染备用UI，而不是整个页面崩溃
-# error:
-1. 错误边界设置后开发环境页面依然崩溃，build出来后页面错误处理正常进行
-2. 无法处理事件处理器异常，事件处理器异常依旧要用try catch捕捉
-# 设置捕获错误的组件，在组件标签内处理可能出现错误的内容，出现错误则渲染错误界面，未出现错误则渲染props.children
+  代码中部分js的错误可能会导致整个页面崩溃，为了避免解决这个问题，react引入了新的概念“错误边界”,能够在捕捉到错误是渲染备用UI，而不是整个页面崩溃
+  # error:
+  1. 错误边界设置后开发环境页面依然崩溃，build出来后页面错误处理正常进行
+  2. 无法处理事件处理器异常，事件处理器异常依旧要用try catch捕捉
+  # 设置捕获错误的组件，在组件标签内处理可能出现错误的内容，出现错误则渲染错误界面，未出现错误则渲染props.children
 
 ### ref 转发
-1. 
-const ref=React.createRef();
-componentDidMount(){
-  ref.current.style.background="#0aa1ed"
-}
-render(){
-  return (
-    <div ref={ref}>dom</div>
-  )
-}
-2. 
-const el = React.forwardRef((porps,ref)=>{
-  return (
-    <div ref={ref}>{props.children}</div>
-  )
-})
-# 配合高阶组件
+  1. 
+  const ref=React.createRef();
+  componentDidMount(){
+    ref.current.style.background="#0aa1ed"
+  }
+  render(){
+    return (
+      <div ref={ref}>dom</div>
+    )
+  }
+  2. 
+  const el = React.forwardRef((porps,ref)=>{
+    return (
+      <div ref={ref}>{props.children}</div>
+    )
+  })
+  # 配合高阶组件
 
 
 ### 高阶组件 HOC
