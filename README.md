@@ -107,7 +107,10 @@
       <Route strict exact path="/mine/ucenter/:id?/:name" component={UCenter} /> -> (传参，组件用props.match.params.id接收，问号代表可以不传)
     </Switch>
   </Router>
-
+  传参：
+  https://www.baidu.com/:id?/:name
+  props.match.params.id
+  props.match.params.name
   跳转：
   import { Link, NavLink } from "react-router-dom"
   <Link to="/mine" >Mine page</Link>
@@ -128,7 +131,76 @@
   一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护
   react 状态管理，类似于vue的vuex，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性
   1. 安装
-   npm install redux --save
+   npm install redux --save-dev
+   redux js状态管理
+   react-redux react数据封装处理
+  2. 用法
+   创建一个store仓库
+   reducer.js:
+    const reducer = (state = 0, action) => {
+      switch (action.type) {
+        case "INCREMENT":
+          return state + 1;
+        case "DECREMENT":
+          return state - 1;
+        default:
+          return state
+      }
+    }
+    export default reducer
+    --------------------
+    store.js:
+    import reducer from "./reducer" 
+    import {createStore} from "redux"
+    const store = createStore(reducer);
+    export default store;
+    --------------------
+    Demo.jsx:
+    import React from "react"
+    import store from "./store"
+    export default class ReduxDemo extends React.Component{
+      constructor(){
+        super()
+        this.state={
+          count:store.getState()
+        }
+        this.decrementHandler=this.decrementHandler.bind(this)
+        this.incrementHandler=this.incrementHandler.bind(this)
+      }
+      incrementHandler(){
+        store.dispatch({//改变store库中变量
+          type:"INCREMENT"
+        })
+        this.setState({
+          count:store.getState()
+        })
+      }
+      decrementHandler(){
+        store.dispatch({
+          type:"DECREENT"
+        })
+        this.setState({
+          count:store.getState()//获取库中内容
+        })
+      }
+      render(){
+        return (
+        <div>
+          <h2 style={{ textAlign: "center" }}>{store.getState()}</h2>
+          <div style={{ textAlign: "center" }}>
+            <button onClick={this.increaseHandler}>increase</button>
+            <button onClick={this.decreaseHandler}>decrease</button>
+          </div>
+        </div>
+        )
+      }
+    }
+
+    # error
+     store.dispatch is not a function
+     应引入index.js 而不是reducer.js
+
+   
    
 ### Context
 # 为一个组件树设置一个全局的数据

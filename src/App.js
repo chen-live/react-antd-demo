@@ -12,8 +12,9 @@ import Basic from "./apis/apis"
 // import Ref from "./view/Ref/ref"
 // import Parent from "./components/store/Parent"
 // import { createStore } from "redux"
-import RefHoc from "./view/Ref/withHOC/RefHoc"
-
+// import RefHoc from "./view/Ref/withHOC/RefHoc"
+// import RouterIndex from "./view/ReactRouter/index"
+import ReduxDemo from "./view/Redux/Demo"
 class App extends React.Component {
   constructor() {
     super()
@@ -50,7 +51,7 @@ class App extends React.Component {
             })}
           </ul>
           : <div>数据加载中……</div>} */}
-        {/* <Router>
+        {/* <Router>3
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -65,7 +66,9 @@ class App extends React.Component {
         {/* <ParentContext /> */}
         {/* <ErrorBoundary /> */}
         {/* <Ref /> */}
-        <RefHoc />
+        {/* <RefHoc /> */}
+        {/* <RouterIndex /> */}
+        <ReduxDemo />
       </div>
     )
   }
