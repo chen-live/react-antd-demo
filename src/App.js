@@ -7,16 +7,18 @@ import Basic from "./apis/apis"
 // import UCenter from "./view/UCenter"
 // import NotFound from "./view/NotFound"
 // import Demo from "./view/Demo"
-import ParentContext from "./view/Context/Parent"
+// import ParentContext from "./view/Context/Parent"
+// import ErrorBoundary from "./view/ErrorBoundary/ErrorBoundary"
+// import Ref from "./view/Ref/ref"
 // import Parent from "./components/store/Parent"
 // import { createStore } from "redux"
+import RefHoc from "./view/Ref/withHOC/RefHoc"
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      banners: [],
-      hasError: false
+      banners: []
     }
   }
   componentDidMount() {
@@ -36,12 +38,6 @@ class App extends React.Component {
     this.setState({
       banners: b.banner
     })
-  }
-  static getDerivedStateFromError(error) {
-    console.log(1, error);
-    return {
-      hasError: true
-    }
   }
   render() {
     // let { banners } = this.state
@@ -66,7 +62,10 @@ class App extends React.Component {
           </Switch>
         </Router> */}
         {/* <Parent /> */}
-        {this.state.hasError ? "出错啦~" : <ParentContext />}
+        {/* <ParentContext /> */}
+        {/* <ErrorBoundary /> */}
+        {/* <Ref /> */}
+        <RefHoc />
       </div>
     )
   }

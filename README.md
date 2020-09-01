@@ -153,9 +153,34 @@ child.ContextType=Consumer // 给class绑定上下文对象
 
 ### 错误边界
 代码中部分js的错误可能会导致整个页面崩溃，为了避免解决这个问题，react引入了新的概念“错误边界”,能够在捕捉到错误是渲染备用UI，而不是整个页面崩溃
-  
-  
+# error:
+1. 错误边界设置后开发环境页面依然崩溃，build出来后页面错误处理正常进行
+2. 无法处理事件处理器异常，事件处理器异常依旧要用try catch捕捉
+# 设置捕获错误的组件，在组件标签内处理可能出现错误的内容，出现错误则渲染错误界面，未出现错误则渲染props.children
 
+### ref 转发
+1. 
+const ref=React.createRef();
+componentDidMount(){
+  ref.current.style.background="#0aa1ed"
+}
+render(){
+  return (
+    <div ref={ref}>dom</div>
+  )
+}
+2. 
+const el = React.forwardRef((porps,ref)=>{
+  return (
+    <div ref={ref}>{props.children}</div>
+  )
+})
+# 配合高阶组件
+
+
+### 高阶组件 HOC
+# 将一个组件作为参数，返回新的UI
+# 在一个组件定义逻辑，多个组件共享
 
 
 
