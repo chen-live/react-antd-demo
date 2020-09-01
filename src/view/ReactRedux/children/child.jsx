@@ -18,10 +18,11 @@ class ReduxDemo extends React.Component {
   decreaseHandler() {
   }
   render() {
+    // console.log(this.props);
     // const { increment, decrement } = this.props;
     return (
       <div>
-        <h2 style={{ textAlign: "center" }}>{this.props.reducer}</h2>
+        <h2 style={{ textAlign: "center" }}>{this.props.counter}</h2>
         <div style={{ textAlign: "center" }}>
           <button onClick={() => this.props.CounterActions.increment(10)}>increase</button>
           <button onClick={() => this.props.CounterActions.decrement(5)}>decrease</button>
@@ -32,8 +33,9 @@ class ReduxDemo extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    reducer: state.reducer
+    counter: state.reducer
   }
 }
 // const mapDispatchToProps = (dispatch) => {

@@ -1,4 +1,4 @@
-import * as consts from "./constans/index"
+import * as consts from "../constans/index"
 const reducer = (state = 0, action) => {
   switch (action.type) {
     case consts.INCREMENT:
