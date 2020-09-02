@@ -347,6 +347,31 @@
 # 在一个组件定义逻辑，多个组件共享
 
 
+### middleware 中间件
+ # 处理redux
+  在创建仓库之前创建中间件
+  同时从redux中引入applyMiddleware
+  store.js:
+    import {createStore,applyMiddleware} from "redux"
+    import reducer from "MyReducer"
+    // create a middleware
+    const errorCollect = store=>next=>action=>{
+      try{
+        next(action)
+      }catch(e){
+        console.log("error",e)
+      }
+    }
+    const store = createStore(MyReducer,{},applyMiddleware(errorCollect))//多个中间件用逗号隔开
+    export default store
+    redux-logger: // 官方提供的logger工具
+    npm install --save-dev redux-logger
+    import reduxLogger from "redux-logger"
+    const store = createStore(MyRedcucer,{},applyMiddleware(reduxLogger))
+    export default store
+
+
+
 
 
 

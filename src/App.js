@@ -15,7 +15,8 @@ import Basic from "./apis/apis"
 // import RefHoc from "./view/Ref/withHOC/RefHoc"
 // import RouterIndex from "./view/ReactRouter/index"
 // import ReduxDemo from "./view/Redux/Demo"
-import ReactReduxDemo from "./view/ReactRedux/index"
+// import ReactReduxDemo from "./view/ReactRedux/index"
+import MiddleWareDemo from "./view/MiddleWare"
 
 class App extends React.Component {
   constructor() {
@@ -71,7 +72,8 @@ class App extends React.Component {
         {/* <RefHoc /> */}
         {/* <RouterIndex /> */}
         {/* <ReduxDemo /> */}
-        <ReactReduxDemo />
+        {/* <ReactReduxDemo /> */}
+        <MiddleWareDemo />
       </div>
     )
   }
