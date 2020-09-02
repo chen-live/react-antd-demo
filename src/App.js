@@ -16,7 +16,7 @@ import Basic from "./apis/apis"
 // import RouterIndex from "./view/ReactRouter/index"
 // import ReduxDemo from "./view/Redux/Demo"
 // import ReactReduxDemo from "./view/ReactRedux/index"
-import MiddleWareDemo from "./view/MiddleWare"
+// import MiddleWareDemo from "./view/MiddleWare"
 
 class App extends React.Component {
   constructor() {
@@ -73,7 +73,8 @@ class App extends React.Component {
         {/* <RouterIndex /> */}
         {/* <ReduxDemo /> */}
         {/* <ReactReduxDemo /> */}
-        <MiddleWareDemo />
+        {/* <MiddleWareDemo /> */}
+        hello
       </div>
     )
   }
