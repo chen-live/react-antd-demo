@@ -17,6 +17,7 @@ import Basic from "./apis/apis"
 // import ReduxDemo from "./view/Redux/Demo"
 // import ReactReduxDemo from "./view/ReactRedux/index"
 // import MiddleWareDemo from "./view/MiddleWare"
+import Demo1 from "./components/Demo1/router"
 
 class App extends React.Component {
   constructor() {
@@ -74,7 +75,7 @@ class App extends React.Component {
         {/* <ReduxDemo /> */}
         {/* <ReactReduxDemo /> */}
         {/* <MiddleWareDemo /> */}
-        hello
+        <Demo1 />
       </div>
     )
   }
