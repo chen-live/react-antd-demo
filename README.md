@@ -127,6 +127,10 @@
       <Redirect form="/hello" to="/mine"></Redurect> -> 访问hello 自动跳转 mine 
 
 ### redux
+  调试工具：
+    reudx-devtools-extension
+
+  # 创建接收者reducer（多个或单个），合并多个接收者，创建一个store库，创建constans常量（即触发的动作），创建actions，使用switch case 获取触发的动作，执行相应的代码（注意：store是只读的，唯一改变它的方式是触发action），页面中引入store库，使用store.getState()获取状态，使用store.dispatch({type:"your constans"})来触发action,改变store库中状态
   react-redux 入门教程 阮一峰
   一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护
   react 状态管理，类似于vue的vuex，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性
@@ -201,6 +205,23 @@
      应引入index.js 而不是reducer.js
 
 ### react-redux
+  # 创建reducer文件夹，在其中定义reducers接收者（一个或多个）
+  # 创建concatReducer.js合并多个接收者（combineReducers）
+  # 创建store.js库，引入接收者，创建store（createStore）库（可在创建库时引入middleware中间件 ### middleWare）
+  # 创建actions文件夹，用来创建你要执行的动作，创建的文件中引入你创建的constans并用switch case用来捕捉你需要执行的动作，并执行对应的代码块
+  # 页面顶级组件中引入{Provider} from "react-redux"，引入store库，使用<Provider store={store}></Provider>标签包裹子组件
+  # 子组件中引入 {connect} from "react-redux",引入需要触发的action文件(yourActions)，引入{bindActionCreators} from "redux",创建mapStateToProps and mapDispatchToProps方法，render方法中使用this.props.yourActions.actions()去触发action去改变store库，最终导出connect连接对象 export ddefault connect(mapStateToProps,mapDispatchToProps)(your page class)
+  const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+      counter: state.reducer
+    }
+  }
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      CounterActions: bindActionCreators(CounterActions, dispatch)
+    }
+  }
   1. 安装
     npm install --save-dev react-redux
   2. 使用
@@ -292,6 +313,7 @@
       }
     }
     export default reducer
+
   
   
 ### Context
@@ -348,7 +370,7 @@
 
 
 ### middleware 中间件
- # 处理redux
+ # 为redux添加中间件
   在创建仓库之前创建中间件
   同时从redux中引入applyMiddleware
   store.js:
@@ -369,7 +391,17 @@
     import reduxLogger from "redux-logger"
     const store = createStore(MyRedcucer,{},applyMiddleware(reduxLogger))
     export default store
-
+  # 处理异步
+    正常情况下在action中添加异步操作会出现 Actions must be plain objects. Use custom middleware for async actions.
+    at dispatch；
+    也就是异步操作必须用中间件进行处理。在中间级挂载前添加redux-thunk中间件即可
+    npm install --save-dev redux-thunk
+    store.js:
+     import thunk from "redux-thunk"
+     import MyStore from "MyStore"
+     import {createStore,applyMiddleware} from "redux"
+     const store = createStore(MyStore,{},applyMiddleware(thunk))
+     export default store
 
 
 

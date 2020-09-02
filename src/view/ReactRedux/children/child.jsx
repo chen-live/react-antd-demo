@@ -32,12 +32,6 @@ class ReduxDemo extends React.Component {
     )
   }
 }
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    counter: state.reducer
-  }
-}
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //     increment: () => {
@@ -48,6 +42,12 @@ const mapStateToProps = (state) => {
 //     }
 //   }
 // }
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    counter: state.reducer
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     CounterActions: bindActionCreators(CounterActions, dispatch)
