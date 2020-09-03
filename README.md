@@ -408,6 +408,11 @@
   2. React.Fragment 防止html结构被打乱，解析为<Fragment><li>li</li></Fragment>=><li>li</li>
 
 
+### 开发
+ 依赖:
+  redux react-redux
+  redux-logger redux-devtools-extension
+  redux-thunk
 
 
 
