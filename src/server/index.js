@@ -1,12 +1,9 @@
 const express = require("express")
 const app = express()
-const users = require("./routers/router")
-app.get("/", (req, res) => {
-  res.send({
-    msg: "hello"
-  })
-})
+const users = require("./routers/users")
+const debug = require("debug")("my-application")
+
 app.use("/api/users", users)
 app.listen(3030, (req, res) => {
-  console.log("server listen 3030......")
+  debug("server listen 3030......")
 })

@@ -409,10 +409,38 @@
 
 
 ### 开发
- 依赖:
+1. 安装依赖:
   redux react-redux
   redux-logger redux-devtools-extension
   redux-thunk
+2. 搭建前端环境
+3. 搭建后端环境
+  服务器热刷新:nodemon
+  npm install -g nodemon
+  npm install --save-dev debug
+  创建nodemon.json文件，配置以下代码
+  {
+    "restartable":"rs",
+    "ignore":[
+      ".git",
+      ".svn",
+      "node_modules/**/node_modules"
+    ],
+    "verbose":true,
+    "execMap":{
+      "js":"node --harmony"
+    },
+    "watch":[],
+    "env":{
+      "NODE_ENV":"development"
+    },
+    "ext":"js json"
+  }
+  在主入口文件引入
+  const debug = require("debug")("my-application");
+  app.listen(3030,(req,res)=>{
+    debug("text>>>>>>")
+  })
 
 
 
