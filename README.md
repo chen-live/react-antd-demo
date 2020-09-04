@@ -442,6 +442,46 @@
     debug("text>>>>>>")
   })
 
+### react-hook
+# 只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用。
+# 只能在 React 的函数组件中调用 Hook。不要在其他 JavaScript 函数中调用。
+1. 在不使用class的情况下使用react语法与特性
+useState:
+  const [count,updateCount] = useState(0);数组结构相当于
+  var c = useState();
+  var count = c[0];
+  var updateCount = c[1]
+
+  import React,{useState} from "react"
+  export default function(props){
+    const [count,updateCount] = useState(0);
+    return (
+      <div>
+        <p>click times is {count}</p>
+        <button onClick={()=>updateCount(count+1)}>click</button>
+      </div>
+    )
+  }
+useEffect:
+  1. 在DOM渲染之后运行你的“副作用”函数，因为函数实在组件中声明的，所以可以访问到当前组件的props和state，每次DOM渲染都会调用useEffect函数，包括第一次
+  2. 在useEffect函数中返回一个函数，是useEffect的清除机制，每一个useEffect函数都可以返回一个清除函数，可以将添加和移除“副作用”的逻辑一起定义，react会在组件销毁之前执行，会在执行当前useEffect对上一个useEffect进行清除
+  import React,{useState} from "react"
+  export default function(props){
+    const [count,updateCount] = useState(0);
+    useEffect(()=>{
+      document.title=`you use ${count} times`
+    })
+    return (
+      <div>
+        <p>click times is {count}</p>
+        <button onClick={()=>updateCount(count+1)}>click</button>
+      </div>
+    )
+  }
+  3. eslint-plugin-react-hooks
+    npm install eslint-plugin-react-hooks --save-dev
+
+
 
 
 

@@ -18,6 +18,7 @@ import Basic from "./apis/apis"
 // import ReactReduxDemo from "./view/ReactRedux/index"
 // import MiddleWareDemo from "./view/MiddleWare"
 // import Demo1 from "./components/Demo1/router"
+import HooksDemo from "./view/Hooks"
 
 class App extends React.Component {
   constructor() {
@@ -27,6 +28,9 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
+    for (let i = 0; i < 10; i++) {
+      Basic.loginHandler("iwen@qq.com", "iwen123", "crfvw")
+    }
     this.fetchDatas();
   }
   async fetchDatas() {
@@ -76,6 +80,7 @@ class App extends React.Component {
         {/* <ReactReduxDemo /> */}
         {/* <MiddleWareDemo /> */}
         {/* <Demo1 /> */}
+        <HooksDemo />
       </div>
     )
   }
