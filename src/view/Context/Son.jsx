@@ -20,7 +20,9 @@ export default class Son extends React.Component {
         <ThemeContext.Consumer>
           {/* Consumer容器，可以拿到上下文提供的值，需要用函数去渲染 */}
           {({ theme, toggleTheme }) => {
-            return (<div style={{ color: "green", padding: "15px 15px", border: "1px solid green " }}>
+            return (<div style={
+              { background: theme.background, userSelect: "none" }
+            }>
               <span onClick={toggleTheme}>son:click me to change theme;</span> background:{theme.background},foreground:{theme.foreground}
               {/* <GrandSon /> */}
             </div>)

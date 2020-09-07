@@ -7,7 +7,7 @@ import Basic from "./apis/apis"
 // import UCenter from "./view/UCenter"
 // import NotFound from "./view/NotFound"
 // import Demo from "./view/Demo"
-// import ParentContext from "./view/Context/Parent"
+import ParentContext from "./view/Context/Parent"
 // import ErrorBoundary from "./view/ErrorBoundary/ErrorBoundary"
 // import Ref from "./view/Ref/ref"
 // import Parent from "./components/store/Parent"
@@ -28,9 +28,9 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    for (let i = 0; i < 10; i++) {
-      Basic.loginHandler("iwen@qq.com", "iwen123", "crfvw")
-    }
+    // for (let i = 0; i < 10; i++) {
+    //   Basic.loginHandler("iwen@qq.com", "iwen123", "crfvw")
+    // }
     this.fetchDatas();
   }
   async fetchDatas() {
@@ -71,7 +71,7 @@ class App extends React.Component {
           </Switch>
         </Router> */}
         {/* <Parent /> */}
-        {/* <ParentContext /> */}
+        <ParentContext />
         {/* <ErrorBoundary /> */}
         {/* <Ref /> */}
         {/* <RefHoc /> */}

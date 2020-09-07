@@ -30,7 +30,7 @@ export default class Fetch {
   constructor(config = { url: "", method: "", headers: {}, body: {}, own: false }) {
     this.url = config.own ? config.url : basicurl + config.url
     this.method = config.method
-    this.headers = config.headers
+    // this.headers = config.headers
     this.headers = {}
     this.headers["content-type"] = "application/x-www-form-urlencoded"
     this.headers["Accept"] = "application/json,text/plain,*/*"
