@@ -51,14 +51,14 @@ export default class App extends React.Component {
     )
   }
 } 
-``` 
+```
 index.js
 ```javascript
 import React from "react"
 import ReactDom from "react-dom"
 import App from "./App"
 ReactDom.render(<App/>,document.getElementById("root"))
-``` 
+```
 3. 传参   
 ```javascript
 import React from "react"
@@ -138,10 +138,10 @@ function Topic(props){
   return <h2>{{Id ? "your id is " + Id : "please select a topic"}}</h2>
 }
 
-```  
+```
 4. 异同  
 | 水果        | 价格    |  数量  |
-| --------   | -----:   | :----: |
-| 香蕉        | $1      |   5    |
+| :------:   | :----:   | :----: |
+| 香蕉        | $1      |   7   |
 | 苹果        | $1      |   6    |
 | 草莓        | $1      |   7    |
