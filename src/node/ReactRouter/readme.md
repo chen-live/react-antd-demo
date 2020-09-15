@@ -3,7 +3,7 @@
 1. 安装  
 > npm install -s react-router-dom
 2. 使用  
->   
+>
 ```javascript  
 import {BrowserRouter as Router,Route,Link} from "react-router-dom"
 import Home from "./Home"
