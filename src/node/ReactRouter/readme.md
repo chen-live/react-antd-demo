@@ -142,5 +142,5 @@ function Topic(props){
 4. 异同  
 |                  | 同             | 异          |
 |  ----            | ----           | ----        |
-|  BrowserHistory  | ----           | ----        |
-|  HashHistory     | ----           | ----        |
+|  BrowserHistory  |            |         |
+|  HashHistory     |            |         |
