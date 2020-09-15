@@ -1,8 +1,8 @@
 ### react-router-dom  
 #### BrowserRouter  
-. 安装  
+1. 安装  
 > npm install -s react-router-dom
-. 使用
+2. 使用  
 >   
 ```javascript  
 import {BrowserRouter as Router,Route,Link} from "react-router-dom"
