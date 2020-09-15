@@ -10,6 +10,7 @@
 >> Home.js  
 >> About.js  
 >> Inbox.js  
+  
 Home.js
 ```javascript
 //About.js和Inbox.js类似
