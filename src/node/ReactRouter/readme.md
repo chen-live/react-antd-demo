@@ -5,20 +5,71 @@
 2. 使用  
 >
 ```javascript  
-import {BrowserRouter as Router,Route,Link} from "react-router-dom"
-import Home from "./Home"
-import Inbox from "./Inbox"
-export default class App extends React.Component{
-  render(){
-  <Router>
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/inbox">Inbox</Link></li>
-    </ul>
-    // exact表示精准匹配
-    <Route path="/" exact component={Home}/>
-    <Route path="/inbox" component={Inbox}/>
-  </Router>
+import React from "react"
+import Home from "./children/Home"
+import About from "./children/About"
+import Inbox from "./children/Inbox"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+export default class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/inbox">Inbox</Link>
+          </li>
+        </ul>
+        <Route path="/" component={Home} exact />
+        <Route path="/about" component={About} />
+        <Route path="/inbox" component={Inbox} />
+      </Router>
+    )
   }
-}  
+} 
+```  
+3. 传参
+```javascript
+import React from "react"
+import Home from "./children/Home"
+import About from "./children/About"
+import Inbox from "./children/Inbox"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+export default class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      lists: [1000, 1100, 1234]
+    }
+  }
+  render() {
+    // 此处使用link标签进行传参，必须与下方About组件一致，否则页面不显示
+    const linkList = this.state.lists.map(item => <Link key={item} to={`/about/${item}/${item}`}>{item}<br/></Link>)
+    return (
+      <Router>
+        {linkList}
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/inbox">Inbox</Link>
+          </li>
+        </ul>
+        <Route path="/" component={Home} exact />
+        // 此处定义传递的参数，About界面使用this.props.match.params.tel接收
+        <Route path="/about/:tel?/:id?" component={About} />
+        <Route path="/inbox" component={Inbox} />
+      </Router>
+    )
+  }
+}
 ```
