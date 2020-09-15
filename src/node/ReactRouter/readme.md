@@ -140,7 +140,10 @@ function Topic(props){
 
 ```  
 4. 异同  
-|                  | 同             | 异          |
-|  ----            | ----           | ----        |
-|  BrowserHistory  |            |         |
-|  HashHistory     |            |         |
+ |                  | 同             | 异  |  
+
+ |  ----            | ----           | ----|  
+
+ |  BrowserHistory  |                |         |  
+
+ |  HashHistory     |                |         |  
