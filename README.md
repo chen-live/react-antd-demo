@@ -8,9 +8,9 @@
 
 # npm run eject:拉取webpack配置文件
  eject error:
- 1.文件被修改，无法执行脚
+ 1. 文件被修改，无法执行脚
   删除.git文件夹,即删除本地git库
- 2.src同级下存在config文件夹
+ 2. src同级下存在config文件夹
   删除config文件夹
  3. Cannot find module 'babel-plugin-import' from 'C:\Users\Lenovo\Desktop\react\react-antd-demo'
   找不到模块，安装即可
@@ -18,8 +18,8 @@
 
 ### fetch
 
-## fetch error
- 1.配置 http-proxy-middleware 项目无法启动
+1. fetch error
+ 配置 http-proxy-middleware 项目无法启动
   const proxy = require('http-proxy-middleware')
   error:proxy is not a function 
   配置如下：
@@ -35,7 +35,7 @@
         )
       );
     };
-  2.封装fetch
+2. 封装fetch
    src/tools/fetch.js
    import Fetch from "src/tools/fetch"
    let f = new Fetch({
@@ -71,10 +71,10 @@
   使用catch捕捉
 # 跨域
   develop env:
-    1.package.json中添加 
+  1. package.json中添加 
     "proxy":"your corss Origin url"
 
-    2.引入 http-proxy-middleware 模块
+  2. 引入 http-proxy-middleware 模块
     src文件夹下创建setupProxy.js文件配置以下内容
       module.exports = function (app) {
         app.use(

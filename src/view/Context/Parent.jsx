@@ -5,7 +5,6 @@ export default class Parent extends React.Component {
   constructor() {
     super()
     this.toggleTheme = () => {
-      console.log(this.state.theme)
       this.setState(state => ({
         theme: state.theme === theme.dark ? theme.light : theme.dark
       }))
@@ -21,8 +20,6 @@ export default class Parent extends React.Component {
     }
   }
   componentDidCatch(error, errorInfo) {
-    console.log(1);
-    console.error(error, errorInfo)
     return { hasError: true, error: { error: error, errorInfo: errorInfo } }
   }
   render() {
@@ -33,8 +30,8 @@ export default class Parent extends React.Component {
       return (
         <div>
           <ThemeContext.Provider value={{ theme: this.state.theme, toggleTheme: this.state.toggleTheme }}>
-            <div style={{ color: "red", padding: "15px 15px", border: "1px solid red " }}>
-              Parent:background:{theme.background},foreground:{theme.foreground}
+            <div style={{ color: theme.color, padding: "15px 15px", background: theme.background }}>
+              Parent:background:{theme.background}
               <Son />
             </div>
           </ThemeContext.Provider>

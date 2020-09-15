@@ -7,7 +7,7 @@ import Basic from "./apis/apis"
 // import UCenter from "./view/UCenter"
 // import NotFound from "./view/NotFound"
 // import Demo from "./view/Demo"
-import ParentContext from "./view/Context/Parent"
+// import ParentContext from "./view/Context/Parent"
 // import ErrorBoundary from "./view/ErrorBoundary/ErrorBoundary"
 // import Ref from "./view/Ref/ref"
 // import Parent from "./components/store/Parent"
@@ -18,7 +18,8 @@ import ParentContext from "./view/Context/Parent"
 // import ReactReduxDemo from "./view/ReactRedux/index"
 // import MiddleWareDemo from "./view/MiddleWare"
 // import Demo1 from "./components/Demo1/router"
-import HooksDemo from "./view/Hooks"
+// import HooksDemo from "./view/Hooks"
+import NodeReactRouter from "./node/ReactRouter/index"
 
 class App extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ class App extends React.Component {
     // for (let i = 0; i < 10; i++) {
     //   Basic.loginHandler("iwen@qq.com", "iwen123", "crfvw")
     // }
-    this.fetchDatas();
+    // this.fetchDatas();
   }
   async fetchDatas() {
     let w = await Basic.loginHandler("iwen@qq.com", "iwen123", "crfvw")
@@ -59,7 +60,7 @@ class App extends React.Component {
             })}
           </ul>
           : <div>数据加载中……</div>} */}
-        {/* <Router>3
+        {/* <Router>
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -71,7 +72,7 @@ class App extends React.Component {
           </Switch>
         </Router> */}
         {/* <Parent /> */}
-        <ParentContext />
+        {/* <ParentContext /> */}
         {/* <ErrorBoundary /> */}
         {/* <Ref /> */}
         {/* <RefHoc /> */}
@@ -80,7 +81,8 @@ class App extends React.Component {
         {/* <ReactReduxDemo /> */}
         {/* <MiddleWareDemo /> */}
         {/* <Demo1 /> */}
-        <HooksDemo />
+        {/* <HooksDemo /> */}
+        <NodeReactRouter/>
       </div>
     )
   }

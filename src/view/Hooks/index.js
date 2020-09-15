@@ -1,4 +1,4 @@
-import React, { useState,useEffect ,useContext} from "react"
+import React, { /*useState,*//*useEffect,*/ useContext} from "react"
 // useState
 // export default function (props) {
 //   const [count, setCount] = useState(0);
@@ -34,7 +34,7 @@ const themes = {
 };
 
 const ThemeContext = React.createContext(themes.light);
-
+console.log(ThemeContext);
 export default function App() {
   return (
     <ThemeContext.Provider value={themes.dark}>
