@@ -18,8 +18,8 @@ export default class Inbox extends React.Component {
 function Topic(props) {
   const { Id } = props.match.params
   return (
-    <div>
+    <h2>
       {Id ? "your id is " + Id : "please select a topic"}
-    </div>
+    </h2>
   )
 }
