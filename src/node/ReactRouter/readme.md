@@ -3,7 +3,13 @@
 1. 安装  
 > npm install -s react-router-dom
 2. 使用  
->
+> 结构 
+> index.js
+> App.js
+> children
+>> Home.js
+>> About.js
+>> Inbox.js
 Home.js
 ```javascript
 //About.js和Inbox.js类似
