@@ -4,6 +4,19 @@
 > npm install -s react-router-dom
 2. 使用  
 >
+Home.js
+```javascript
+//About.js和Inbox.js类似
+import React from "react"
+export default class Home extends React.Component{
+  render(){
+    return (
+      <div>Home</div>
+    )
+  }
+}
+```
+App.js
 ```javascript  
 import React from "react"
 import Home from "./children/Home"
@@ -32,20 +45,15 @@ export default class App extends React.Component {
     )
   }
 } 
-```  
-3. 传参   
+``` 
+index.js
 ```javascript
-Home.js
-//About.js和Inbox.js类似
 import React from "react"
-export default class Home extends React.Component{
-  render(){
-    return (
-      <div>Home</div>
-    )
-  }
-}
-```
+import ReactDom from "react-dom"
+import App from "./App"
+ReactDom.render(<App/>,document.getElementById("root"))
+``` 
+3. 传参   
 ```javascript
 import React from "react"
 import Home from "./children/Home"
