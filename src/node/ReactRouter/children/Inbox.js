@@ -16,6 +16,7 @@ export default class Inbox extends React.Component {
   }
 }
 function Topic(props) {
+  console.log(props);
   const { Id } = props.match.params
   return (
     <h2>

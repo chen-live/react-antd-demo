@@ -1,5 +1,5 @@
 ## react-router-dom  
-### BrowserRouter  
+### BrowserRouter & HashHistory 
 1. 安装  
 > npm install -s react-router-dom
 2. 使用  
@@ -10,7 +10,7 @@
 >> Home.js  
 >> About.js  
 >> Inbox.js  
-  
+
 Home.js
 ```javascript
 //About.js和Inbox.js类似
@@ -29,6 +29,11 @@ import React from "react"
 import Home from "./children/Home"
 import About from "./children/About"
 import Inbox from "./children/Inbox"
+/**
+ * Router 路由容器
+ * Route 路由规则，一个Route表示一个路由规则
+ * Route 中，path表示路径，component表示要渲染的组件，exact表示精准匹配，不使用exact会出现一个路径渲染多个组件的情况
+*/
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 export default class App extends React.Component {
   render() {
@@ -133,4 +138,9 @@ function Topic(props){
   return <h2>{{Id ? "your id is " + Id : "please select a topic"}}</h2>
 }
 
-```
+```  
+4. 异同  
+|                  | 同             | 异          |
+|  ----            | ----           | ----        |
+|  BrowserHistory  | ----           | ----        |
+|  HashHistory     | ----           | ----        |
