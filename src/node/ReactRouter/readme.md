@@ -1,5 +1,5 @@
-### react-router-dom  
-#### BrowserRouter  
+## react-router-dom  
+### BrowserRouter  
 1. 安装  
 > npm install -s react-router-dom
 2. 使用  
@@ -28,15 +28,9 @@ export default class App extends React.Component {
     return (
       <Router>
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/inbox">Inbox</Link>
-          </li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/inbox">Inbox</Link></li>
         </ul>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
@@ -85,7 +79,7 @@ export default class App extends React.Component {
           </li>
         </ul>
         <Route path="/" component={Home} exact />
-        // 此处定义传递的参数，About界面使用this.props.match.params.tel接收
+        {/* 此处定义传递的参数，About界面使用this.props.match.params.tel接收*/}
         <Route path="/about/:tel?/:id?" component={About} />
         <Route path="/inbox" component={Inbox} />
       </Router>
@@ -106,4 +100,29 @@ export default class About extends React.Component{
     )
   }
 }
+```
+3. 嵌套路由  
+Inbox.js
+```
+import React from "react"
+import {Route,Link} from "react-router-dom"
+export default class Inbox extends React.Component{
+  render(){
+    return (
+      <div>
+        <ul>
+          {/*定义跳转的路由，外加传递的参数*/}
+          <li><Link to={`${this.props.match.patch}/Components`}>Components</Link></li>
+          <li><Link to={`${this.props.match.patch}/VState`}></Link></li>
+        </ul>
+        {/*定义路由，外加参数*/}
+        <Route path={`${this.props.match.path}/:Id` component={Topic}}></Route>
+      </div>
+    )
+  }
+}
+function Topic(props){
+  return <h2>{{Id ? "your id is " + Id : "please select a topic"}}</h2>
+}
+
 ```
