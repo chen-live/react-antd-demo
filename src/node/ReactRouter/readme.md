@@ -33,7 +33,19 @@ export default class App extends React.Component {
   }
 } 
 ```  
-3. 传参
+3. 传参   
+```javascript
+Home.js
+//About.js和Inbox.js类似
+import React from "react"
+export default class Home extends React.Component{
+  render(){
+    return (
+      <div>Home</div>
+    )
+  }
+}
+```
 ```javascript
 import React from "react"
 import Home from "./children/Home"
@@ -69,6 +81,20 @@ export default class App extends React.Component {
         <Route path="/about/:tel?/:id?" component={About} />
         <Route path="/inbox" component={Inbox} />
       </Router>
+    )
+  }
+}
+```
+```javascript
+About.js
+//稍为改动
+import React from "react"
+export default class About extends React.Component{
+  render(){
+    const params = this.props.match.params
+    return (
+      <div>tel:{params.tel}</div>
+      <div>id:{params.id}</div>
     )
   }
 }
