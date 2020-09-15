@@ -103,7 +103,7 @@ export default class About extends React.Component{
 ```
 3. 嵌套路由  
 Inbox.js
-```
+```javascript
 import React from "react"
 import {Route,Link} from "react-router-dom"
 export default class Inbox extends React.Component{
