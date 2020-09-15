@@ -3,7 +3,8 @@
 . 安装  
 > npm install -s react-router-dom
 . 使用
-> ```javascript
+>   
+```javascript  
 import {BrowserRouter as Router,Route,Link} from "react-router-dom"
 import Home from "./Home"
 import Inbox from "./Inbox"
@@ -19,5 +20,5 @@ export default class App extends React.Component{
     <Route path="/inbox" component={Inbox}/>
   </Router>
   }
-}
+}  
 ```
