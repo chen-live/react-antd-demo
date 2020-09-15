@@ -85,9 +85,9 @@ export default class App extends React.Component {
   }
 }
 ```
-```javascript
 About.js
 //稍为改动
+```javascript
 import React from "react"
 export default class About extends React.Component{
   render(){
