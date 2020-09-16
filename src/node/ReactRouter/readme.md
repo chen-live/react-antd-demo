@@ -139,9 +139,10 @@ function Topic(props){
 }
 
 ```
-4. 异同  
-    | 水果        | 价格    |  数量  |
-    | :------:   | :----:   | :----: |
-    | 香蕉        | $1      |   7   |
-    | 苹果        | $1      |   6    |
-    | 草莓        | $1      |   7    |
+4. 异同   BrowserRouter & HashHistory 
+    |         | 原理  |  特点  |
+    | :------:   | :----:   | :----- |
+    | BrowserRouter        | H5的historyAPI（`pushState`,`replaceState`和`popstate`） |   url会被web server解析，需要后端配合重定向，否则访问到没有的界面会出现空白界面   |
+    | HashHistory        | URL的HASH |   /#/router不会被web server解析，window.location.hash被react-router解析匹配对应的路由   |
+    
+    
