@@ -2,7 +2,8 @@ import React from "react"
 import Home from "./children/Home"
 import About from "./children/About"
 import Inbox from "./children/Inbox"
-import { HashRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import UP from "./children/useParams"
 export default class App extends React.Component {
   constructor() {
     super()
@@ -11,16 +12,25 @@ export default class App extends React.Component {
     }
   }
   render() {
-    const linkList = this.state.lists.map(item => <Link key={item} to={`/about/${item}/${item}`}>{item}<br/></Link>)
+    const linkList = this.state.lists.map(item => <Link key={item} to={`/about/${item}/${item}`}>{item}<br /></Link>)
     return (
       <Router>
+        <UP />
         {linkList}
         <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to={{
+              pathname: "/about",
+              search: "?id=1",
+              hash: "#the-hash",
+              state: { fromDashBoard: true }
+            }}
+            >About</Link>
+            {/* <Link to={location=>({...location,pathname:"/about"})}>About</Link> */}
+            {/* <Link  to={location => `/about?sort=name`}>About</Link> */}
           </li>
           <li>
             <Link to="/inbox">Inbox</Link>

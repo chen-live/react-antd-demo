@@ -1,6 +1,6 @@
 # react-router-dom  
 
-## BrowserRouter & HashHistory
+## 示例
 
 1. 安装  
 
@@ -8,7 +8,8 @@
 
 2. 使用
 
-    > 结构
+    结构
+
     > index.js  
     > App.js  
     > children  
@@ -158,10 +159,10 @@
     ```
 
 5. 异同   BrowserRouter & HashHistory
-    |         | 原理  |  特点  |
-    | :------:   | :----:   | :----- |
-    | BrowserRouter        | H5的historyAPI（`pushState`,`replaceState`和`popstate`） |   url会被web server解析，需要后端配合重定向，否则访问到没有的界面会出现空白界面   |
-    | HashHistory        | URL的HASH |   /#/router不会被web server解析，window.location.hash被react-router解析匹配对应的路由   |
+|               | 原理                                                     | 特点                                                                                |
+|:--------------|:---------------------------------------------------------|:------------------------------------------------------------------------------------|
+| BrowserRouter | H5的historyAPI（`pushState`,`replaceState`和`popstate`） | url会被web server解析，需要后端配合重定向，否则访问到没有的界面会出现空白界面       |
+| HashHistory   | URL的HASH                                                | /#/router不会被web server解析，window.location.hash被react-router解析匹配对应的路由 |
   
 ### BrowserRouter
 
@@ -191,4 +192,109 @@
 
 3. getUserConfirmation:func
 
-   用于确认导航的函数，默认使用[window.confirm](),例如，当从`/a`跳转到`/b`时，会默认使用`confirm`函数弹出一个提示，用户点击确认后进行导航，否则不做任何处理
+   用于确认导航的函数，默认使用[window.confirm](#fragment),例如，当从`/a`跳转到`/b`时，会默认使用`confirm`函数弹出一个提示，用户点击确认后进行导航，否则不做任何处理，需要配合`<Prompt/>`一起使用，
+
+   ```javascript
+   const GetUserConfirm=(msg,callback){
+     const allowTransfer = window.confirm(msg);
+     callback(allowTransfer)
+   }
+   <BrowserRouter getUserConfirmation={getUserConfirm}/>
+   ```
+
+4. keyLength:number
+
+    location.key的长度，默认为6
+
+    ```javascript
+    <BrowserRouter keylength={12}/>
+    ```
+
+5. children:node
+    选择一个要渲染的子元素
+    *在react的版本低于16时，你必须选择一个单个的标签去渲染，如果需要渲染多个标签，尝试放在一个单个的div标签中*
+
+### HashRouter
+
+1. basename:string
+
+2. getUserConfirmation:func
+
+    用于确认导航的功能，默认使用`window.confirm`
+
+3. hasyType:string
+    默认使用`window.location.hash`，分为三种
+    + slash
+      默认，带有斜线
+       `http://localhost:3000/#/modus-create`
+    + noslash
+      不带斜线
+       `http://localhost:3000/#modus-create`
+    + hashbang
+      **`#`** 后方添加 **`!`**
+      `http://localhost:3000/#!/modus-create`
+
+### Link
+
+1. to:string|object|function
+    + string:
+
+    ```javascript
+    <Link to="/about?sort=name"/>
+    ```
+
+    + object
+
+    ```javascript
+    <Link to={{
+      pathname:"/about",
+      search:"?sort=name",
+      hash:"#the-hash"
+      state:{formDashboard:true}
+    }}>
+    {/*下一个页面用this.props.location访问*/}
+    ```
+
+    + function
+
+    ```javascript
+    <Link to={location=>({...location,pathname:"/about"})}>
+    <Link to={location=>`/about?sort=name`}>
+    {/*下一个页面用this.props.location访问*/}
+    ```
+
+2. replace:bool
+    替换location历史记录中当前路由，而非新增
+
+    ```javascript
+    <Link to="/about" replace/>
+    ```
+
+3. innerRef:function|RefObject
+    允许访问组件的底层引用
+
+    + function:
+
+    ```javascript
+    <Link to="/about" innerRef={node=>{
+      //node指向你最终挂载的DOM元素，卸载时为null 即为Link标签自身
+      console.log(node) //<a href="/about"/>
+    }}/>
+    ```
+
+    + RefObject:
+
+    ```javascript
+    const el=React.crateRef();
+    <Link to="/about" innerRef={el}/>
+    ```
+
+4. component:React.Component
+    如果想使用自己的导航组件，传递自身的porp即可
+
+    ```javascript
+    const FancyLink = React.forwardRef((props,ref)=>{
+      <a ref={ref} {props.children}/>
+    })
+    <Link to="/about" component={FancyLink}/>
+    ```
