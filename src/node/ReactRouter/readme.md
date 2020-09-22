@@ -298,3 +298,64 @@
     })
     <Link to="/about" component={FancyLink}/>
     ```
+
+### NavLink
+
+1. activeClassName:string
+    元素被选中时提供的类名，默认为active，与className同时加入元素
+
+    ```javascript
+    <NavLink activeClassName="myClass">
+    ```
+
+2. activeStyle:object
+    元素被选中时提供的style样式
+
+    ```javascript
+    <NavLink activeStyle={{font-size:25px;color:"#f0f0f0"}}>
+    ```
+
+3. exact:bool
+    启用时，仅会在严格模式匹配到时才启用activeClassName/activeStyle
+
+    ```javascript
+    <NavLink exact activeStyle={{font-size:25px;color:"#f0f0f0"}}>
+    ```
+
+4. strict:bool
+    如果为true，在匹配到时将会考虑匹配尾部斜线
+
+5. isActive:func
+    使用逻辑去确定`<Link/>`是否处于被选中状态
+
+    ```javascript
+    <NavLink activeStyle={{font-size:25px;color:"#f0f0f0"}}>
+    ```
+
+### Prompt
+
+路由跳转前执行
+
+```javascript
+export class Pmt extends React.Component{
+  constructor(){
+    super()
+    this.state={
+      message:""
+    }
+  }
+  changeHandler(e) {
+    this.setState({
+      message: e.target.value
+    })
+  }
+  render(){
+    return (
+      <div>
+        <Prompt when={!!this.state.message} message={"确定要离开吗？"} />
+        <input onChange={this.changeHandler} value={this.state.message}/>
+      </div>
+    )
+  }
+}
+```

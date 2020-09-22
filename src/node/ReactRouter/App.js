@@ -2,8 +2,9 @@ import React from "react"
 import Home from "./children/Home"
 import About from "./children/About"
 import Inbox from "./children/Inbox"
+import NL from "./children/NavLInk"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import UP from "./children/useParams"
+// import UP from "./children/useParams"
 export default class App extends React.Component {
   constructor() {
     super()
@@ -15,7 +16,7 @@ export default class App extends React.Component {
     const linkList = this.state.lists.map(item => <Link key={item} to={`/about/${item}/${item}`}>{item}<br /></Link>)
     return (
       <Router>
-        <UP />
+        {/* <UP /> */}
         {linkList}
         <ul>
           <li>
@@ -39,6 +40,7 @@ export default class App extends React.Component {
         <Route path="/" component={Home} exact />
         <Route path="/about/:tel?/:id?" component={About} />
         <Route path="/inbox" component={Inbox} />
+        <NL />
       </Router>
     )
   }
