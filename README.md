@@ -1,9 +1,9 @@
 # 使用react-create-app创建react项目
 
-> npm install npx -g
->npx create-react-app my-app
->cd my-app
->yarn start
+>npm install npx -g  
+>npx create-react-app my-app  
+>cd my-app  
+>yarn start  
 
 ## 按需加载
 
