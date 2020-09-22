@@ -159,11 +159,11 @@
     ```
 
 5. 异同   BrowserRouter & HashHistory
-|               | 原理                                                     | 特点                                                                                |
-|:--------------|:---------------------------------------------------------|:------------------------------------------------------------------------------------|
-| BrowserRouter | H5的historyAPI（`pushState`,`replaceState`和`popstate`） | url会被web server解析，需要后端配合重定向，否则访问到没有的界面会出现空白界面       |
-| HashHistory   | URL的HASH                                                | /#/router不会被web server解析，window.location.hash被react-router解析匹配对应的路由 |
-  
+    |               | 原理                                                     | 特点                                                                                |
+    |:--------------|:---------------------------------------------------------|:------------------------------------------------------------------------------------|
+    | BrowserRouter | H5的historyAPI（`pushState`,`replaceState`和`popstate`） | url会被web server解析，需要后端配合重定向，否则访问到没有的界面会出现空白界面       |
+    | HashHistory   | URL的HASH                                                | /#/router不会被web server解析，window.location.hash被react-router解析匹配对应的路由 |
+
 ### BrowserRouter
 
 1. basename:string

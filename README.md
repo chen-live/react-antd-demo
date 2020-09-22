@@ -7,6 +7,21 @@
 
 ## 按需加载
 
+package.json中添加
+
+```json
+"plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": "css"
+        }
+      ]
+    ]
+```
+
 ## npm run eject:拉取webpack配置文件
 
  eject error:
@@ -19,7 +34,7 @@
       找不到模块，安装即可
       npm install babel-plugin-import --save
 
-### fetch
+## fetch封装
 
   1. errors
       配置 http-proxy-middleware 项目无法启动
@@ -90,35 +105,33 @@
           )
       ```
 
-### 错误信息
+  5. 错误信息
 
-  使用catch捕捉
+      使用catch捕捉
 
-### 跨域
+  6. 跨域
 
-develop env:
-
-1. package.json中添加
++ package.json中添加
 
     `"proxy":"such as https://www.baidu.com"`
 
-2. 引入 http-proxy-middleware 模块
++ 引入 http-proxy-middleware 模块
 
   `src文件夹下创建setupProxy.js文件配置以下内容`
 
-```javascript
-module.exports = function (app) {
-        app.use(
-          "/api", //use api to replace your target url
-          proxy(
-            {
-              target: "http://localhost:3100",//your url
-              changeOrigin: true
-            }
+  ```javascript
+  module.exports = function (app) {
+          app.use(
+            "/api", //use api to replace your target url
+            proxy(
+              {
+                target: "http://localhost:3100",//your url
+                changeOrigin: true
+              }
+            )
           )
-        )
-}
-```
+  }
+  ```
 
 ## react-router-dom
 
@@ -137,33 +150,33 @@ module.exports = function (app) {
   调试工具：
     reudx-devtools-extension
 
-### 简介
+1. 简介
 
-+ 创建接收者reducer（多个或单个）
+    + 创建接收者reducer（多个或单个）
 
-+ 合并多个接收者
+    + 合并多个接收者
 
-+ 创建一个store库  
+    + 创建一个store库  
 
-+ 创建一个store库  创建constans常量（即触发的动作）  
+    + 创建一个store库  创建constans常量（即触发的动作）  
 
-+ 创建actions
+    + 创建actions
 
-+ 使用switch case 获取触发的动作，执行相应的代码（注意：store是只读的，唯一改变它的方式是触发action）
+    + 使用switch case 获取触发的动作，执行相应的代码（注意：store是只读的，唯一改变它的方式是触发action）
 
-+ 页面中引入store库，使用store.getState()获取状态，使用store.dispatch({type:"your constans"})来触发action,改变store库中状态
+    + 页面中引入store库，使用store.getState()获取状态，使用store.dispatch({type:"your constans"})来触发action,改变store库中状态
 
-+ **一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护react 状态管理，类似于vue的vuex，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性**
+    + **一般情况下状态提升能够解决大部分组件传参的问题，但是如果多个文件需要同一状态就会导致文件形成强耦合，后期不好维护理，redux，将状态定义在仓库，分发给各个需要的组件，降低组件的强耦合性**
 
-### 安装
+2. 安装
 
-  npm install redux --save-dev
-  redux js状态管理
-  react-redux react数据封装处理
+    npm install redux --save-dev
+    redux js状态管理
+    react-redux react数据封装处理
 
-### 用法  
+3. 用法  
 
-  1. 创建一个store仓库
+    + 创建一个store仓库
 
       reducer.js:
 
@@ -234,9 +247,9 @@ module.exports = function (app) {
         }
       ```
 
-  2. errors
-     store.dispatch is not a function
-     应引入index.js 而不是reducer.js
+    + errors
+      store.dispatch is not a function
+      应引入index.js 而不是reducer.js
 
 ## react-redux
 
@@ -262,11 +275,11 @@ module.exports = function (app) {
   }
   ```
 
-  1. 安装
+1. 安装
 
       npm install --save-dev react-redux
 
-  2. 使用
+2. 使用
 
       使用redux创建一个store库
 
@@ -286,7 +299,7 @@ module.exports = function (app) {
 
       actions.js:
 
-        ```javascript
+      ```javascript
         export function increment() {
           return {
             type: "INCREMENT"
@@ -336,13 +349,13 @@ module.exports = function (app) {
         export default connect(mapStateToProps, mapDispatchToProps)(ReduxDemo)
       ```
 
-  3. 参数传递
+3. 参数传递
 
       `<button onClick={() => { increment(5) }}>increase</button>`
       `<button onClick={() => { decrement(10) }}>decrease</button>`
       actions.js:
 
-        ```javascript
+      ```javascript
         import * as consts from "../constans/index"
         export function increment(num) {
           return {
@@ -356,7 +369,7 @@ module.exports = function (app) {
             num
           }
         }
-        ```
+      ```
 
       reducer.js
 
@@ -377,38 +390,38 @@ module.exports = function (app) {
 
 ## Context
 
-### 为一个组件树设置一个全局的数据
+1. 为一个组件树设置一个全局的数据
 
-  perent:
+      perent:
 
-  ```javascript
-  // 创建一个Context上下文对象
-  export default const {Provider,Consumer} = React.createContext("defaultValue");
-  子组件引入Consumer并且在Consumer标签内使用函数导出所需要的数据即可
-  child:
-  import {Consumer} from "./Parent"// 引入父级创建的上下文对象，可以直接引用
-  render(){
-    // const theme=this.context //theme 直接访问到上下文对象的值
-    return {
-      <Consumer>
-        {(value)=><div>{value}</div>}
-      </Consumer>
-    }
-  }
-  child.ContextType=Consumer // 给class绑定上下文对象
-  ```
+      ```javascript
+      // 创建一个Context上下文对象
+      export default const {Provider,Consumer} = React.createContext("defaultValue");
+      子组件引入Consumer并且在Consumer标签内使用函数导出所需要的数据即可
+      child:
+      import {Consumer} from "./Parent"// 引入父级创建的上下文对象，可以直接引用
+      render(){
+        // const theme=this.context //theme 直接访问到上下文对象的值
+        return {
+          <Consumer>
+            {(value)=><div>{value}</div>}
+          </Consumer>
+        }
+      }
+      child.ContextType=Consumer // 给class绑定上下文对象
+      ```
 
-### 传递函数(`Context 可以传递任意类型的值`)
+2. 传递函数(`Context 可以传递任意类型的值`)
 
 ## 错误边界
 
   代码中部分js的错误可能会导致整个页面崩溃，为了避免解决这个问题，react引入了新的概念“错误边界”,能够在捕捉到错误是渲染备用UI，而不是整个页面崩溃
 
-### errors
+1. errors
 
-  1. 错误边界设置后开发环境页面依然崩溃，build出来后页面错误处理正常进行
-  2. 无法处理事件处理器异常，事件处理器异常依旧要用try catch捕捉
-  3. 设置捕获错误的组件，在组件标签内处理可能出现错误的内容，出现错误则渲染错误界面，未出现错误则渲染props.children
+    + 错误边界设置后开发环境页面依然崩溃，build出来后页面错误处理正常进行
+    + 无法处理事件处理器异常，事件处理器异常依旧要用try catch捕捉
+    + 设置捕获错误的组件，在组件标签内处理可能出现错误的内容，出现错误则渲染错误界面，未出现错误则渲染props.children
 
 ## ref 转发
 
@@ -436,11 +449,9 @@ module.exports = function (app) {
 
 ## 高阶组件 HOC
 
-### 将一个组件作为参数，返回新的UI
-
-### 在一个组件定义逻辑，多个组件共享
-
-### middleware 中间件
+将一个组件作为参数，返回新的UI  
+在一个组件定义逻辑，多个组件共享  
+middleware 中间件  
 
  1. 为redux添加中间件
       在创建仓库之前创建中间件
@@ -495,9 +506,9 @@ module.exports = function (app) {
 
 ## react-hook
 
-### 只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用
+只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用
 
-### 只能在 React 的函数组件中调用 Hook。不要在其他 JavaScript 函数中调用
+只能在 React 的函数组件中调用 Hook。不要在其他 JavaScript 函数中调用
 
 1. 在不使用class的情况下使用react语法与特性
 
