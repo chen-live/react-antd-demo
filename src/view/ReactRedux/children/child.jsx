@@ -5,8 +5,8 @@ import * as CounterActions from "../actions/counter"
 import { bindActionCreators } from "redux"
 import ReactReduxUserDemo from "./user"
 class ReduxDemo extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       count: 0
     }
